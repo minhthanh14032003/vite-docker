@@ -2,7 +2,7 @@ pipeline {
   agent any
   environment {
         DOCKER_IMAGE = 'minhthanh14032003/vite-docker'  // Tên Docker image bạn muốn tạo
-        DOCKER_CREDENTIALS = credentials('dockerhub-credentials')  // Thông tin đăng nhập Docker Hub
+        DOCKER_CREDENTIALS = credentials('dockerhubCredentials')  // Thông tin đăng nhập Docker Hub
   }
   stages {
     stage('Clone...') {
@@ -23,7 +23,7 @@ pipeline {
       steps {
         script {
           String commitHash = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()  // Đảm bảo khai báo lại biến commitHash nếu cần
-          docker.withRegistry('', dockerhub-credentials) {
+          docker.withRegistry('', DOCKER_CREDENTIALS) {
             sh "docker push ${DOCKER_IMAGE}:${commitHash}"
             sh "docker push ${DOCKER_IMAGE}:latest"
           }
