@@ -7,9 +7,6 @@ pipeline {
     }
     stages {
         stage('Checkout') {
-            tools {
-              git 'git'
-            } 
             steps {
                 echo 'Get source from develop branch'
                 git branch: BRANCH_NAME, url: 'https://github.com/minhthanh14032003/vite-docker'
