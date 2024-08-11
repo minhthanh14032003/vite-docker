@@ -23,7 +23,7 @@ pipeline {
       steps {
         script {
           String commitHash = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
-          docker.withRegistry(credentialsId: dockerhubCredentials, url: 'https://index.docker.io/v1/') {
+          withDockerRegistry(credentialsId: 'dockerhubCredentials', url: 'https://index.docker.io/v1/') {
             sh "docker push ${DOCKER_IMAGE}:${commitHash}"
             sh "docker push ${DOCKER_IMAGE}:latest"
           }
