@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         DOCKER_CREDENTIALS = credentials('dockerhub-credentials')
-        DOCKER_IMAGE = 'docker.io/username/image:latest'
+        DOCKER_IMAGE = 'docker.io/minhthanh14032003/vite-docker:latest'
         BRANCH_NAME = 'develop'
     }
     stages {
