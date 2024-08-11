@@ -22,8 +22,8 @@ pipeline {
     stage('Push Docker Image') {
       steps {
         script {
-          String commitHash = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()  // Đảm bảo khai báo lại biến commitHash nếu cần
-          docker.withRegistry('', DOCKER_CREDENTIALS) {
+          String commitHash = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
+          docker.withRegistry(credentialsId: dockerhubCredentials, url: 'https://index.docker.io/v1/') {
             sh "docker push ${DOCKER_IMAGE}:${commitHash}"
             sh "docker push ${DOCKER_IMAGE}:latest"
           }
