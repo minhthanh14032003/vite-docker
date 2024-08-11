@@ -3,7 +3,7 @@ pipeline {
     stages {
       stage ('Clone...') {
         steps {
-          git 'https://github.com/minhthanh14032003/vite-docker'
+          git branch: 'develop', url: 'https://github.com/minhthanh14032003/vite-docker'
         }
       }
     }
