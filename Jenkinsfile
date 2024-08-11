@@ -1,6 +1,6 @@
 pipeline {
-    agent none
-    evironment {
+    agent any
+    environment {
         DOCKER_CREDENTIALS = credentials('dockerhub-credentials')
         DOCKER_IMAGE = 'docker.io/username/image:latest'
         BRANCH_NAME = 'develop'
